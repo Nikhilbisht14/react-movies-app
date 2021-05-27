@@ -43,8 +43,28 @@ class Home extends Component {
         this.state = {
             modalIsOpen: false,
             value: 0,
+
             username:"",
-            usernameRequired:"dispNone"
+            usernameRequired:"dispNone",
+
+            loginPassword: "",
+            loginPasswordRequired: "dispNone",
+            
+            firstname: "",
+            firstnameRequired: "dispNone",
+            
+            lastname: "",
+            lastnameRequired: "dispNone",
+            
+            email: "",
+            emailRequired: "dispNone",
+            
+            registerPassword: "",
+            registerPasswordRequired: "dispNone",
+            
+            contact: "",
+            contactRequired: "dispNone",
+            
         }
     }
 
@@ -60,13 +80,50 @@ class Home extends Component {
         this.setState({value})
     }
 
-    loginClickHandler = () =>{
-        this.state.username === "" ? this.setState({usernameRequired: "dispBlock"}) : this.setState({usernameRequired: "dispNone"})
-    }
-
+    /*----------------------Login Form Validation---------------*/ 
     inputUsernameChangeHandler = (event) =>{
         this.setState({username : event.target.value})
     }
+
+    inputLoginPasswordChangeHandler = (event) =>{
+        this.setState({loginPassword : event.target.value})
+    }
+
+    loginClickHandler = () =>{
+        this.state.username === "" ? this.setState({usernameRequired: "dispBlock"}) : this.setState({usernameRequired: "dispNone"});
+        this.state.loginPassword === "" ? this.setState({loginPasswordRequired: "dispBlock"}) : this.setState({loginPasswordRequired: "dispNone"});
+    }
+
+    /*----------------------Register Form Validation---------------*/ 
+
+    registerClickHandler = () => {
+        this.state.firstname === "" ? this.setState({ firstnameRequired: "dispBlock" }) : this.setState({ firstnameRequired: "dispNone" });
+        this.state.lastname === "" ? this.setState({ lastnameRequired: "dispBlock" }) : this.setState({ lastnameRequired: "dispNone" });
+        this.state.email === "" ? this.setState({ emailRequired: "dispBlock" }) : this.setState({ emailRequired: "dispNone" });
+        this.state.registerPassword === "" ? this.setState({ registerPasswordRequired: "dispBlock" }) : this.setState({ registerPasswordRequired: "dispNone" });
+        this.state.contact === "" ? this.setState({ contactRequired: "dispBlock" }) : this.setState({ contactRequired: "dispNone" });
+    }
+
+    inputFirstNameChangeHandler = (event) =>{
+        this.setState({firstname : event.target.value})
+    }
+
+    inputLastNameChangeHandler = (event) =>{
+        this.setState({lastname : event.target.value})
+    }
+
+    inputEmailChangeHandler = (event) =>{
+        this.setState({email : event.target.value})
+    }
+
+    inputRegisterPasswordChangeHandler = (event) =>{
+        this.setState({registerPassword : event.target.value})
+    }
+
+    inputContactChangeHandler = (event) =>{
+        this.setState({contact : event.target.value})
+    }
+
 
     render(){
         return(
@@ -98,12 +155,45 @@ class Home extends Component {
                         </FormControl><br></br> <br></br>
                         <FormControl required>
                             <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input id="password" type="password"></Input>
+                            <Input id="password" type="password" loginpassword={this.state.loginPassword} onChange={this.inputLoginPasswordChangeHandler}></Input>
+                            <FormHelperText className={this.state.loginPasswordRequired}><span className="red">required</span></FormHelperText>
                         </FormControl><br></br> <br></br>
 
                         <Button variant='contained' color='primary' onClick={this.loginClickHandler}>LOGIN</Button>
                     </TabContainer>
                     }
+
+                    {this.state.value === 1 &&
+                    <TabContainer>
+                        <FormControl required>
+                            <InputLabel htmlFor="firstname">First Name</InputLabel>
+                            <Input id="firstname" type="text" firstname={this.state.firstname} onChange={this.inputFirstNameChangeHandler}></Input>
+                            <FormHelperText className={this.state.firstnameRequired}><span className="red">required</span></FormHelperText>
+                        </FormControl><br></br> <br></br>
+                        <FormControl required>
+                            <InputLabel htmlFor="lastname">Last Name</InputLabel>
+                            <Input id="lastname" type="text" lastname={this.state.lastname} onChange={this.inputLastNameChangeHandler}></Input>
+                            <FormHelperText className={this.state.lastnameRequired}><span className="red">required</span></FormHelperText>
+                        </FormControl><br></br> <br></br>
+                        <FormControl required>
+                            <InputLabel htmlFor="email">Email</InputLabel>
+                            <Input id="email" type="email" email={this.state.email} onChange={this.inputEmailChangeHandler}></Input>
+                            <FormHelperText className={this.state.emailRequired}><span className="red">required</span></FormHelperText>
+                        </FormControl><br></br> <br></br>
+                        <FormControl required>
+                            <InputLabel htmlFor="password">Password</InputLabel>
+                            <Input id="password" type="password" loginpassword={this.state.registerPassword} onChange={this.inputRegisterPasswordChangeHandler}></Input>
+                            <FormHelperText className={this.state.registerPasswordRequired}><span className="red">required</span></FormHelperText>
+                        </FormControl><br></br> <br></br>
+                        <FormControl required>
+                            <InputLabel htmlFor="contact">Contact No.</InputLabel>
+                            <Input id="contact" type="text" contact={this.state.contact} onChange={this.inputContactChangeHandler}></Input>
+                            <FormHelperText className={this.state.contactRequired}><span className="red">required</span></FormHelperText>
+                        </FormControl><br></br> <br></br>
+
+                        <Button variant='contained' color='primary' onClick={this.registerClickHandler}>REGISTER</Button>
+                    </TabContainer>
+                    }   
                 </Modal>
             </div>
         )

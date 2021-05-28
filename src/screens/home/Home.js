@@ -18,6 +18,7 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
+import TextField from '@material-ui/core/TextField';
 
 
 const styles = theme => ({
@@ -160,6 +161,15 @@ const styles = theme => ({
                                             ))
                                         }
                                     </Select>
+                                </FormControl>
+                                <FormControl className={classes.formControl}>
+                                    <TextField
+                                    id = "releasedDateStart"
+                                    label = "Release Date Start"
+                                    type='date'
+                                    defaultValue=""
+                                    InputLabelProps={{shrink: true}}>
+                                    </TextField>
                                 </FormControl>
                             </CardContent>
                         </Card> 

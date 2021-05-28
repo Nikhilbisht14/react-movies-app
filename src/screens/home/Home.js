@@ -19,6 +19,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
 
 
 const styles = theme => ({
@@ -179,6 +181,9 @@ const styles = theme => ({
                                     defaultValue=""
                                     InputLabelProps={{shrink: true}}>
                                     </TextField>
+                                </FormControl><br/><br/>
+                                <FormControl className={classes.formControl}>
+                                    <Button variant="contained" color="primary">APPLY</Button>
                                 </FormControl>
                             </CardContent>
                         </Card> 

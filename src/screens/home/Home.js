@@ -1,10 +1,12 @@
 import React, {Component} from'react';
+import ReactDom from 'react-dom';
 import './Home.css';
 import Header from '../../common/header/Header';
 import { withStyles } from '@material-ui/core/styles';
 import moviesData from '../../common/movieData';
 import geners from '../../common/genres'
 import artists from '../../common/artists';
+import Details from './../details/Details';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -78,6 +80,12 @@ const styles = theme => ({
         this.setState({artists: event.target.value})
     }
 
+    movieClickHandler = (movieId) => {
+        ReactDom.render( 
+            <Details movieId={movieId}></Details>,
+            document.getElementById('root'))
+    }
+
     render() {
         const { classes } = this.props;
         return (
@@ -99,7 +107,7 @@ const styles = theme => ({
 
                 <div className="flex-container">
                     <div className="left">
-                        <GridList ellHeight={350} cols={4} className={classes.gridListMain}>
+                        <GridList onClick={() => this.movieClickHandler(moviesData.id)} ellHeight={350} cols={4} className={classes.gridListMain}>
                             {
                                 moviesData.map(movie => (
                                         <GridListTile className="released-movie-grid-item" key={"grid" + movie.id}>

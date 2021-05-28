@@ -171,6 +171,15 @@ const styles = theme => ({
                                     InputLabelProps={{shrink: true}}>
                                     </TextField>
                                 </FormControl>
+                                <FormControl className={classes.formControl}>
+                                    <TextField
+                                    id = "releasedDateEnd"
+                                    label = "Release Date End"
+                                    type='date'
+                                    defaultValue=""
+                                    InputLabelProps={{shrink: true}}>
+                                    </TextField>
+                                </FormControl>
                             </CardContent>
                         </Card> 
                     </div>

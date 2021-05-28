@@ -4,6 +4,7 @@ import Header from '../../common/header/Header';
 import { withStyles } from '@material-ui/core/styles';
 import moviesData from '../../common/movieData';
 import geners from '../../common/genres'
+import artists from '../../common/artists';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -55,7 +56,8 @@ const styles = theme => ({
         super();
         this.state = {
             movieName : "",
-            geners: []
+            geners: [],
+            artists: []
 
         }
     }
@@ -67,6 +69,10 @@ const styles = theme => ({
 
     genreSelectHandler = (event) => {
         this.setState({geners: event.target.value})
+    }
+
+    artistSelectHandler = (event) => {
+        this.setState({artists: event.target.value})
     }
 
     render() {
@@ -129,6 +135,27 @@ const styles = theme => ({
                                                 <MenuItem id={genre.id} value = {genre.name}>
                                                     <Checkbox checked={this.state.geners.indexOf(genre.name) > -1}></Checkbox>
                                                     <ListItemText primary = {genre.name}></ListItemText>
+                                                </MenuItem>
+                                            ))
+                                        }
+                                    </Select>
+                                </FormControl>
+                                <FormControl className={classes.formControl}>
+                                    <InputLabel htmlFor='select-multiple-checkbox'>Artist</InputLabel>
+                                    <Select 
+                                    multiple
+                                    input ={<Input id="select-multiple-checkbox>"/>}
+                                    renderValue={selected => selected.join(',')}
+                                    value = {this.state.artists} 
+                                    onChange ={this.artistSelectHandler}>
+                                        <MenuItem vlaue = "0">
+                                            None
+                                        </MenuItem>
+                                        {
+                                            artists.map(artist => (
+                                                <MenuItem id={artist.id} value={artist.first_name + " " + artist.last_name}>
+                                                    <Checkbox checked={this.state.artists.indexOf(artist.first_name + " " + artist.last_name) > -1}></Checkbox>
+                                                    <ListItemText primary = {artist.first_name + " " + artist.last_name}></ListItemText>
                                                 </MenuItem>
                                             ))
                                         }

@@ -107,10 +107,10 @@ const styles = theme => ({
 
                 <div className="flex-container">
                     <div className="left">
-                        <GridList onClick={() => this.movieClickHandler(moviesData.id)} ellHeight={350} cols={4} className={classes.gridListMain}>
+                        <GridList cellHeight={350} cols={4} className={classes.gridListMain}>
                             {
                                 moviesData.map(movie => (
-                                        <GridListTile className="released-movie-grid-item" key={"grid" + movie.id}>
+                                        <GridListTile onClick={() => this.movieClickHandler(movie.id)} className="released-movie-grid-item" key={"grid" + movie.id}>
                                                 <img src={movie.poster_url} className="movie-poster" alt={movie.title}></img>
                                                 <GridListTileBar title={movie.title} subtitle={<span>Release Date: {new Date(movie.release_date).toDateString()}</span>}></GridListTileBar>
                                         </GridListTile>

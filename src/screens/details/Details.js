@@ -97,7 +97,7 @@ class Details extends Component {
         console.log("Render method")
         return (
             <div className="details">
-                <Header></Header>
+                <Header showBookShowButton = "true"></Header>
                 <div className="back">
                     <Typography onClick={this.backToHomeHandler}>
                         &#60; Back to Home

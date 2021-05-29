@@ -6,6 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import Home from '../../screens/home/Home';
 import ReactDom from 'react-dom';
 import YouTube from 'react-youtube';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import { Grid } from '@material-ui/core';
+import artists from '../../common/artists';
 
 
 class Details extends Component {
@@ -28,7 +33,11 @@ class Details extends Component {
 
     backToHomeHandler = () => 
     {
-        ReactDom.render( <Home></Home>, document.getElementById('root'))
+        ReactDom.render(<Home></Home>, document.getElementById('root'))
+    }
+
+    artistClickHandler = (wikiUrl) => {
+        window.location = wikiUrl;
     }
 
     render() {
@@ -81,7 +90,23 @@ class Details extends Component {
                         </div>
                     </div>
                     <div className="rightDetails">
-
+                    <div className="bold marginBottom16 marginTop16">
+                            <Typography>
+                                <span className="bold">Artists:</span>
+                            </Typography>
+                            <div className="paddingRight">
+                                <GridList cellHeight={160} cols={2}> 
+                                    {
+                                        movie.artists != null && movie.artists.map(artist => (
+                                            <GridListTile className="gridTile" id={artists.id} onClick={() => this.artistClickHandler(artist.wiki_url)}>
+                                                <img src={artist.profile_url} alt={artist.first_name + " " + artist.last_name}></img>
+                                                <GridListTileBar title={artist.first_name + " " + artist.last_name}></GridListTileBar>
+                                            </GridListTile>                
+                                        ))
+                                    }
+                                </GridList>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

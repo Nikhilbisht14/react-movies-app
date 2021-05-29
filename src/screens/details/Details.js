@@ -3,6 +3,9 @@ import './Details.css';
 import Header from '../../common/header/Header';
 import moviesData from '../../common/movieData';
 import Typography from '@material-ui/core/Typography';
+import Home from '../../screens/home/Home';
+import ReactDom from 'react-dom';
+import YouTube from 'react-youtube';
 
 
 class Details extends Component {
@@ -23,12 +26,31 @@ class Details extends Component {
         console.log("Mount method")
     }
 
+    backToHomeHandler = () => 
+    {
+        ReactDom.render( <Home></Home>, document.getElementById('root'))
+    }
+
     render() {
         let movie = this.state.movie;
+
+        const opts = {
+            height: '300',
+            width: '700',
+            playerVars: {
+                autoplay: 1
+            }
+        }
+
         console.log("Render method")
         return (
             <div className="details">
                 <Header></Header>
+                <div className="back">
+                    <Typography onClick={this.backToHomeHandler}>
+                        &#60; Back to Home
+                    </Typography>
+                </div>
                 <div className="flex-containerDetails">
                     <div className="leftDetails">
                         <img src={movie.poster_url} alt={movie.title}></img>
@@ -50,6 +72,12 @@ class Details extends Component {
                         </div>
                         <div className="marginTop16">
                             <Typography><span className="bold">Plot: </span><a href={movie.wiki_url}>(Wiki Link)</a>{movie.storyline}</Typography>
+                        </div>
+                        <div className="trailerContainer">
+                            <Typography><span className="bold">Trailer: </span></Typography>
+                            <YouTube videoId={movie.trailer_url.split("?v=")[1]}
+                            opts={opts}
+                            onReady={this._onReady}></YouTube>
                         </div>
                     </div>
                     <div className="rightDetails">

@@ -23,7 +23,8 @@ class BookShow extends Component {
     constructor() {
         super();
         this.state = {
-            location: ""
+            location: "",
+            language:"",
         }
     }
 
@@ -33,6 +34,10 @@ class BookShow extends Component {
 
     locationChangeHandler= (e) => {
         this.setState({location: e.target.value})
+    }
+
+    languageChangeHandler = (e) => {
+        this.setState({language: e.target.value})
     }
 
     render() {
@@ -50,12 +55,23 @@ class BookShow extends Component {
                             BOOK SHOW
                         </Typography><br/>
                         <FormControl required className="formControl">
-                            <InputLabel htmlFor="location">Choose Location</InputLabel>
+                            <InputLabel htmlFor="location">Choose Location:</InputLabel>
                             <Select value={this.state.location}
                             onChange={this.locationChangeHandler}>
                                 {
                                     location.map(loc => (
                                     <MenuItem key={"loc" + loc.id} value={loc.location}>{loc.location}</MenuItem>))
+                                }
+                             </Select>
+                        </FormControl>
+
+                        <FormControl required className="formControl">
+                            <InputLabel htmlFor="language">Choose Language:</InputLabel>
+                            <Select value={this.state.location}
+                            onChange={this.languageChangeHandler}>
+                                {
+                                    language.map(lan => (
+                                    <MenuItem key={"loc" + lan.id} value={lan.language}>{lan.language}</MenuItem>))
                                 }
                              </Select>
                         </FormControl>

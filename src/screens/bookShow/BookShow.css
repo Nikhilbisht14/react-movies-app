@@ -1,12 +1,3 @@
-/* .bookShow {
-    text-align: center;
-    margin-top: 16px;
-}
-
-.back {
-    cursor: pointer;
-} */
-
 .bookShow {
     text-align: center;
     margin-top: 16px;
@@ -29,6 +20,18 @@
 
 .marginTop16 {
     margin-top: 16px;
+}
+
+.dispNone {
+    display: none;
+}
+
+.dispBlock {
+    display: block;
+}
+
+.red {
+    color: red;
 }
 
 .dispNone {

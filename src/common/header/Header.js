@@ -130,7 +130,7 @@ class Home extends Component {
         ReactDOM.render(
             <BookShow></BookShow>,
             document.getElementById('root')
-          );
+        );
     }
 
 

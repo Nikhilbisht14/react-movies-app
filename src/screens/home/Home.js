@@ -1,4 +1,4 @@
-import React, {Component} from'react';
+import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import './Home.css';
 import Header from '../../common/header/Header';
@@ -49,18 +49,18 @@ const styles = theme => ({
         margin: theme.spacing.unit,
         minWidth: 240,
         maxWidth: 240
-     },
-     title: {
+    },
+    title: {
         color: theme.palette.primary.light,
-     }
- });
+    }
+});
 
- class Home extends Component {
+class Home extends Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            movieName : "",
+            movieName: "",
             geners: [],
             artists: []
 
@@ -69,21 +69,22 @@ const styles = theme => ({
 
 
     movieNameChangeHnadler = (event) => {
-        this.setState({movieName: event.target.value})
+        this.setState({ movieName: event.target.value })
     }
 
     genreSelectHandler = (event) => {
-        this.setState({geners: event.target.value})
+        this.setState({ geners: event.target.value })
     }
 
     artistSelectHandler = (event) => {
-        this.setState({artists: event.target.value})
+        this.setState({ artists: event.target.value })
     }
 
     movieClickHandler = (movieId) => {
-        ReactDom.render( 
+        ReactDom.render(
             <Details movieId={movieId}></Details>,
-            document.getElementById('root'))
+            document.getElementById('root')
+        )
     }
 
     render() {
@@ -94,10 +95,10 @@ const styles = theme => ({
                 <div className={classes.upcomingMoviesHeading}>
                     <span>Upcoming Movies</span>
                 </div>
-                <GridList cols={5} className={classes.gridListUpcomingMovies}> 
+                <GridList cols={5} className={classes.gridListUpcomingMovies}>
                     {
                         moviesData.map(movie => (
-                            <GridListTile key= {movie.id}>
+                            <GridListTile key={movie.id}>
                                 <img className="movie-poster" src={movie.poster_url} alt={movie.title}></img>
                                 <GridListTileBar title={movie.title}></GridListTileBar>
                             </GridListTile>
@@ -110,11 +111,11 @@ const styles = theme => ({
                         <GridList cellHeight={350} cols={4} className={classes.gridListMain}>
                             {
                                 moviesData.map(movie => (
-                                        <GridListTile onClick={() => this.movieClickHandler(movie.id)} className="released-movie-grid-item" key={"grid" + movie.id}>
-                                                <img src={movie.poster_url} className="movie-poster" alt={movie.title}></img>
-                                                <GridListTileBar title={movie.title} subtitle={<span>Release Date: {new Date(movie.release_date).toDateString()}</span>}></GridListTileBar>
-                                        </GridListTile>
-                                    ))
+                                    <GridListTile onClick={() => this.movieClickHandler(movie.id)} className="released-movie-grid-item" key={"grid" + movie.id}>
+                                        <img src={movie.poster_url} className="movie-poster" alt={movie.title}></img>
+                                        <GridListTileBar title={movie.title} subtitle={<span>Release Date: {new Date(movie.release_date).toDateString()}</span>}></GridListTileBar>
+                                    </GridListTile>
+                                ))
                             }
                         </GridList>
                     </div>
@@ -132,20 +133,20 @@ const styles = theme => ({
                                 </FormControl>
                                 <FormControl className={classes.formControl}>
                                     <InputLabel htmlFor='select-multiple-checkbox'>Genre</InputLabel>
-                                    <Select 
-                                    multiple
-                                    input ={<Input id="select-multiple-checkbox>"/>}
-                                    renderValue={selected => selected.join(',')}
-                                    value = {this.state.geners} 
-                                    onChange ={this.genreSelectHandler}>
-                                        <MenuItem vlaue = "0">
+                                    <Select
+                                        multiple
+                                        input={<Input id="select-multiple-checkbox>" />}
+                                        renderValue={selected => selected.join(',')}
+                                        value={this.state.geners}
+                                        onChange={this.genreSelectHandler}>
+                                        <MenuItem vlaue="0">
                                             None
                                         </MenuItem>
                                         {
                                             geners.map(genre => (
-                                                <MenuItem id={genre.id} value = {genre.name}>
+                                                <MenuItem id={genre.id} key={genre.id} value={genre.name}>
                                                     <Checkbox checked={this.state.geners.indexOf(genre.name) > -1}></Checkbox>
-                                                    <ListItemText primary = {genre.name}></ListItemText>
+                                                    <ListItemText primary={genre.name}></ListItemText>
                                                 </MenuItem>
                                             ))
                                         }
@@ -153,20 +154,20 @@ const styles = theme => ({
                                 </FormControl>
                                 <FormControl className={classes.formControl}>
                                     <InputLabel htmlFor='select-multiple-checkbox'>Artist</InputLabel>
-                                    <Select 
-                                    multiple
-                                    input ={<Input id="select-multiple-checkbox>"/>}
-                                    renderValue={selected => selected.join(',')}
-                                    value = {this.state.artists} 
-                                    onChange ={this.artistSelectHandler}>
-                                        <MenuItem vlaue = "0">
+                                    <Select
+                                        multiple
+                                        input={<Input id="select-multiple-checkbox>" />}
+                                        renderValue={selected => selected.join(',')}
+                                        value={this.state.artists}
+                                        onChange={this.artistSelectHandler}>
+                                        <MenuItem vlaue="0">
                                             None
                                         </MenuItem>
                                         {
                                             artists.map(artist => (
-                                                <MenuItem id={artist.id} value={artist.first_name + " " + artist.last_name}>
+                                                <MenuItem key={artist.id} id={artist.id} value={artist.first_name + " " + artist.last_name}>
                                                     <Checkbox checked={this.state.artists.indexOf(artist.first_name + " " + artist.last_name) > -1}></Checkbox>
-                                                    <ListItemText primary = {artist.first_name + " " + artist.last_name}></ListItemText>
+                                                    <ListItemText primary={artist.first_name + " " + artist.last_name}></ListItemText>
                                                 </MenuItem>
                                             ))
                                         }
@@ -174,27 +175,27 @@ const styles = theme => ({
                                 </FormControl>
                                 <FormControl className={classes.formControl}>
                                     <TextField
-                                    id = "releasedDateStart"
-                                    label = "Release Date Start"
-                                    type='date'
-                                    defaultValue=""
-                                    InputLabelProps={{shrink: true}}>
+                                        id="releasedDateStart"
+                                        label="Release Date Start"
+                                        type='date'
+                                        defaultValue=""
+                                        InputLabelProps={{ shrink: true }}>
                                     </TextField>
                                 </FormControl>
                                 <FormControl className={classes.formControl}>
                                     <TextField
-                                    id = "releasedDateEnd"
-                                    label = "Release Date End"
-                                    type='date'
-                                    defaultValue=""
-                                    InputLabelProps={{shrink: true}}>
+                                        id="releasedDateEnd"
+                                        label="Release Date End"
+                                        type='date'
+                                        defaultValue=""
+                                        InputLabelProps={{ shrink: true }}>
                                     </TextField>
-                                </FormControl><br/><br/>
+                                </FormControl><br /><br />
                                 <FormControl className={classes.formControl}>
                                     <Button variant="contained" color="primary">APPLY</Button>
                                 </FormControl>
                             </CardContent>
-                        </Card> 
+                        </Card>
                     </div>
                 </div>
             </div>

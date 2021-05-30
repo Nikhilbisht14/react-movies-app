@@ -147,7 +147,7 @@ class Details extends Component {
                                 <GridList cellHeight={160} cols={2}> 
                                     {
                                         movie.artists != null && movie.artists.map(artist => (
-                                            <GridListTile className="gridTile" id={artists.id} onClick={() => this.artistClickHandler(artist.wiki_url)}>
+                                            <GridListTile key={artist.id} className="gridTile" id={artists.id} onClick={() => this.artistClickHandler(artist.wiki_url)}>
                                                 <img src={artist.profile_url} alt={artist.first_name + " " + artist.last_name}></img>
                                                 <GridListTileBar title={artist.first_name + " " + artist.last_name}></GridListTileBar>
                                             </GridListTile>                

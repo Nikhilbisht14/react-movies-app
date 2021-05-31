@@ -17,6 +17,7 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Confirmation from '../confirmation/Confirmation';
 
 
 
@@ -73,6 +74,15 @@ class BookShow extends Component {
         this.state.showDate === "" ? this.setState({ reqShowDate: "dispBlock" }) : this.setState({ reqShowDate: "dispNone" });
         this.state.showTime === "" ? this.setState({ reqShowTime: "dispBlock" }) : this.setState({ reqShowTime: "dispNone" });
         this.state.tickets === 0 ? this.setState({ reqTickets: "dispBlock" }) : this.setState({ reqTickets: "dispNone" });
+
+        if((this.state.location !== "") && (this.state.language !== "") && (this.state.showDate !== "") && (this.state.showTime !== "") && (this.state.tickets !== 0)){
+            return (
+                ReactDOM.render(
+                    <Confirmation bookingSummary={this.state}></Confirmation>,
+                    document.getElementById('root')
+                )
+            );
+        }
     }
     
     render() {
@@ -166,7 +176,7 @@ class BookShow extends Component {
                             <Typography>
                                 Total Price: Rs. {this.state.unitPrice * this.state.tickets}
                             </Typography><br/>
-                            <Button onClick={this.bookShowButtonHandler} variant="contained" onClick={this.bookShowButtonHandler} color="primary">
+                            <Button onClick={this.bookShowButtonHandler} variant="contained" color="primary">
                                 BOOK SHOW
                             </Button>
 
